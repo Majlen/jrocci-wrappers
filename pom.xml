@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cz.cesnet.cloud</groupId>
+	<artifactId>jrocci-wrappers</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<rocci.version>5.0.1</rocci.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>rubygems-releases</id>
+			<url>http://rubygems-proxy.torquebox.org/releases</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jruby</groupId>
+			<artifactId>jruby</artifactId>
+			<version>[9.1.0.0,9.2.0.0)</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>rubygems</groupId>
+			<artifactId>occi-core</artifactId>
+			<version>${rocci.version}</version>
+			<type>gem</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>de.saumya.mojo</groupId>
+				<artifactId>gem-maven-plugin</artifactId>
+				<version>1.1.5</version>
+				<configuration>
+					<includeRubygemsInResources>true</includeRubygemsInResources>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>initialize</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>de.saumya.mojo</groupId>
+				<artifactId>jruby-maven-plugin</artifactId>
+				<version>1.1.5</version>
+				<configuration>
+					<generateJava>true</generateJava>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
