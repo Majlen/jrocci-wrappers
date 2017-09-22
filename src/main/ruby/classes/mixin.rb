@@ -1,8 +1,8 @@
 require 'java'
 require 'occi/core'
-java_require 'mixin'
-java_package 'cz.cesnet.cloud.occi.interfaces'
-java_import "cz.cesnet.cloud.occi.interfaces.Mixin"
+java_require 'classes/mixin'
+java_package 'cz.cesnet.cloud.occi.interfaces.core'
+java_import "cz.cesnet.cloud.occi.interfaces.core.Mixin"
 java_import "java.util.List"
 
 class MixinImpl

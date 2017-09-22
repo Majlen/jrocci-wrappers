@@ -1,4 +1,4 @@
-package cz.cesnet.cloud.occi.interfaces;
+package cz.cesnet.cloud.occi.interfaces.core;
 
 import java.util.List;
 

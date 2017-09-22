@@ -1,10 +1,10 @@
 require 'java'
 require 'occi/infrastructure'
-java_require 'model'
-java_package 'cz.cesnet.cloud.occi.interfaces'
-java_import "cz.cesnet.cloud.occi.interfaces.Model"
-java_import "cz.cesnet.cloud.occi.interfaces.Mixin"
-java_import "cz.cesnet.cloud.occi.interfaces.MixinImpl"
+java_require 'classes/model'
+java_package 'cz.cesnet.cloud.occi.interfaces.core'
+java_import "cz.cesnet.cloud.occi.interfaces.core.Model"
+java_import "cz.cesnet.cloud.occi.interfaces.core.Mixin"
+java_import "cz.cesnet.cloud.occi.interfaces.core.MixinImpl"
 java_import "java.util.List"
 
 class ModelImpl
@@ -12,9 +12,13 @@ class ModelImpl
 	java_implements Model
 
 	def initialize(model)
-		@model = Occi::Infrastructure::Model.new
-		Occi::Core::Parsers::TextParser.model(model, {}, 'text/plain', @model)
-		@model.valid! # ALWAYS validate before using the model!
+		if model.is_a? String
+			@model = Occi::Infrastructure::Model.new
+			Occi::Core::Parsers::TextParser.model(model, {}, 'text/plain', @model)
+			@model.valid! # ALWAYS validate before using the model!
+		elsif model.is_a? Occi::Core::Model
+			@model = model
+		end
 	end
 
 	java_signature "List<Mixin> getMixins()"
