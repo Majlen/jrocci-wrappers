@@ -1,4 +1,7 @@
 # jrocci-wrappers - Java wrappers around OCCI Ruby gems
+[![Build Status](https://travis-ci.org/Majlen/jrocci-wrappers.svg?branch=master)](https://travis-ci.org/Majlen/jrocci-wrappers)
+[![Coverage Status](https://coveralls.io/repos/github/Majlen/jrocci-wrappers/badge.svg?branch=master)](https://coveralls.io/github/Majlen/jrocci-wrappers?branch=master)
+
 The repository contains wrappers originally developed for [GUOCCI](https://github.com/Majlen/guocci).
 It can be used as a replacement for jOCCI libraries.
 
