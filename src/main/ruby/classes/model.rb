@@ -11,10 +11,17 @@ class ModelImpl
 	include Model
 	java_implements Model
 
-	def initialize(model)
+	def initialize(model, media_type)
 		if model.is_a? String
 			@model = Occi::Infrastructure::Model.new
-			Occi::Core::Parsers::TextParser.model(model, {}, 'text/plain', @model)
+
+			case media_type
+			when "text/plain"
+				Occi::Core::Parsers::TextParser.model(model, {}, media_type, @model)
+			when "application/json", "application/occi+json"
+				Occi::Core::Parsers::JsonParser.model(model, {}, media_type, @model)
+			end
+
 			@model.valid! # ALWAYS validate before using the model!
 		elsif model.is_a? Occi::Core::Model
 			@model = model

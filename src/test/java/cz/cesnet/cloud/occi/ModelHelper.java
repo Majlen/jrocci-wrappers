@@ -7,9 +7,9 @@ import java.nio.charset.StandardCharsets;
 
 public class ModelHelper {
 
-	public static String getTextModel() throws IOException {
+	public static String getModel(String res) throws IOException {
 
-		BufferedInputStream is = new BufferedInputStream(ModelTest.class.getResourceAsStream("/model.txt"));
+		BufferedInputStream is = new BufferedInputStream(ModelHelper.class.getResourceAsStream(res));
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
 		int result = is.read();

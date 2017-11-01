@@ -1,5 +1,6 @@
-package cz.cesnet.cloud.occi;
+package cz.cesnet.cloud.occi.text;
 
+import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Mixin;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
 import org.testng.Assert;
@@ -15,12 +16,12 @@ public class ModelTest {
 
 	@BeforeClass
 	public void setUp() throws IOException {
-		textModel = ModelHelper.getTextModel();
+		textModel = ModelHelper.getModel("/correct/model.txt");
 	}
 
-	@Test(groups = "model")
+	@Test(groups = "modelText")
 	public void parseCorrectTextModelTest() throws ScriptException, IOException {
-		model = Model.getModel(textModel);
+		model = Model.getModel(textModel, "text/plain");
 	}
 
 	@Test(dependsOnMethods = {"parseCorrectTextModelTest"})
@@ -32,13 +33,13 @@ public class ModelTest {
 	@Test(dependsOnMethods = {"parseCorrectTextModelTest"})
 	public void getResTplModelTest() {
 		List<Mixin> ResList = model.getResourceTpls();
-		Assert.assertEquals(ResList.size(), 5);
+		Assert.assertEquals(ResList.size(), 2);
 	}
 
 	@Test(dependsOnMethods = {"parseCorrectTextModelTest"})
 	public void getMixinsModelTest() {
 		List<Mixin> MixinList = model.getMixins();
-		Assert.assertEquals(MixinList.size(), 16);
+		Assert.assertEquals(MixinList.size(), 20);
 	}
 
 }
