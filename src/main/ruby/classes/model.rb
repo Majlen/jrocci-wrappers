@@ -51,6 +51,3 @@ class ModelImpl
 		return list
 	end
 end
-
-Yell.new '/dev/null', name: Object
-ModelImpl.new $model
