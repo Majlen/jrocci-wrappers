@@ -5,6 +5,7 @@ java_package 'cz.cesnet.cloud.occi.interfaces.core'
 java_import "cz.cesnet.cloud.occi.interfaces.core.Model"
 java_import "cz.cesnet.cloud.occi.interfaces.core.Mixin"
 java_import "cz.cesnet.cloud.occi.interfaces.core.MixinImpl"
+java_import "cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException"
 java_import "java.util.List"
 
 class ModelImpl
@@ -15,14 +16,18 @@ class ModelImpl
 		if model.is_a? String
 			@model = Occi::Infrastructure::Model.new
 
-			case media_type
-			when "text/plain"
-				Occi::Core::Parsers::TextParser.model(model, {}, media_type, @model)
-			when "application/json", "application/occi+json"
-				Occi::Core::Parsers::JsonParser.model(model, {}, media_type, @model)
-			end
+			begin
+				case media_type
+				when "text/plain"
+					Occi::Core::Parsers::TextParser.model(model, {}, media_type, @model)
+				when "application/json", "application/occi+json"
+					Occi::Core::Parsers::JsonParser.model(model, {}, media_type, @model)
+				end
 
-			@model.valid! # ALWAYS validate before using the model!
+				@model.valid! # ALWAYS validate before using the model!
+			rescue Occi::Core::Errors::ParsingError => e
+				raise ParsingException.new e.message
+			end
 		elsif model.is_a? Occi::Core::Model
 			@model = model
 		end
