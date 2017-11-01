@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<rocci-core.version>5.0.1</rocci-core.version>
+		<rocci-core.version>5.0.3</rocci-core.version>
 		<rocci-api.version>5.0.0</rocci-api.version>
 	</properties>
 
