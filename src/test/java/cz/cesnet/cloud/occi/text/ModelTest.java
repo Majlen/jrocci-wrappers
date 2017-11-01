@@ -14,7 +14,7 @@ public class ModelTest {
 	private String textModel;
 	private Model model;
 
-	@BeforeClass
+	@BeforeClass(dependsOnGroups = "init")
 	public void setUp() throws IOException {
 		textModel = ModelHelper.getModel("/correct/model.txt");
 	}

@@ -13,7 +13,7 @@ public class MalformedModelTest {
 	String textModel;
 	Model model;
 
-	@BeforeClass
+	@BeforeClass(dependsOnGroups = "init")
 	public void setUp() throws IOException {
 		textModel = ModelHelper.getModel("/malformed/model.json");
 	}
