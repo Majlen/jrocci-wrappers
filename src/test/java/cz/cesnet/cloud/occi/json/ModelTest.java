@@ -16,7 +16,7 @@ public class ModelTest {
 	private String textModel;
 	private Model model;
 
-	@BeforeClass(dependsOnGroups = "init")
+	@BeforeClass
 	public void setUp() throws IOException {
 		textModel = ModelHelper.getModel("/correct/model.json");
 	}

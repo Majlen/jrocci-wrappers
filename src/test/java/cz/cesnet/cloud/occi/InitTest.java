@@ -1,10 +1,10 @@
 package cz.cesnet.cloud.occi;
 
 import cz.cesnet.cloud.occi.interfaces.Initializer;
-import org.testng.annotations.Test;
+import org.testng.annotations.BeforeSuite;
 
 public class InitTest {
-	@Test(groups = "init")
+	@BeforeSuite
 	public void createRubyLogger() {
 		Initializer.initRubyLogger();
 	}
