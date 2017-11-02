@@ -128,6 +128,7 @@
 				<configuration>
 					<includes>
 						<include>cz/cesnet/cloud/occi/interfaces/**/*</include>
+						<include>cz/cesnet/cloud/occi/interfaces/*</include>
 					</includes>
 				</configuration>
 				<executions>
