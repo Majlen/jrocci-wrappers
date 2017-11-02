@@ -5,5 +5,13 @@ jdk:
   - oraclejdk8
   - openjdk8
 
+cache:
+  directories:
+    - $HOME/.m2
+
+before_cache:
+  - mvn clean coveralls:help
+  - rm -vr $HOME/.m2/repository/cz/cesnet/cloud/jrocci-wrappers
+
 after_success:
   - mvn clean test jacoco:report coveralls:report
