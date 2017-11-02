@@ -1,5 +1,6 @@
 package cz.cesnet.cloud.occi;
 
+import cz.cesnet.cloud.occi.interfaces.core.Action;
 import cz.cesnet.cloud.occi.interfaces.core.Mixin;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
 import org.testng.Assert;
@@ -43,4 +44,8 @@ public class ModelHelper {
 		Assert.assertEquals(mixinList.size(), 20);
 	}
 
+	public static void testActions(Model m) {
+		List<Action> actionList = m.getActions();
+		Assert.assertEquals(actionList.size(), 18);
+	}
 }

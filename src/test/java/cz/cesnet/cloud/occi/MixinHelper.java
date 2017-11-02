@@ -1,5 +1,6 @@
 package cz.cesnet.cloud.occi;
 
+import cz.cesnet.cloud.occi.interfaces.core.Action;
 import cz.cesnet.cloud.occi.interfaces.core.Mixin;
 import org.testng.Assert;
 
@@ -29,6 +30,12 @@ public class MixinHelper {
 	public static void testRelations(List<Mixin> list) {
 		for (Mixin m: list) {
 			Assert.assertEquals(m.getRelations().get(0).getTerm(), "os_tpl");
+		}
+	}
+
+	public static void testActions(List<Mixin> list) {
+		for (Mixin m: list) {
+			Assert.assertEquals(m.getActions().size(), 0);
 		}
 	}
 }

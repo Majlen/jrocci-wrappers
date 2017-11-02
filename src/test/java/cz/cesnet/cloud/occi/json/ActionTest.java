@@ -1,8 +1,8 @@
 package cz.cesnet.cloud.occi.json;
 
-import cz.cesnet.cloud.occi.MixinHelper;
+import cz.cesnet.cloud.occi.ActionHelper;
 import cz.cesnet.cloud.occi.ModelHelper;
-import cz.cesnet.cloud.occi.interfaces.core.Mixin;
+import cz.cesnet.cloud.occi.interfaces.core.Action;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
@@ -12,42 +12,31 @@ import javax.script.ScriptException;
 import java.io.IOException;
 import java.util.List;
 
-
-public class MixinTest {
-	private List<Mixin> mixinsJson;
+public class ActionTest {
+	List<Action> actions;
 
 	@BeforeClass(dependsOnGroups = "modelJSON")
-	public void setUp() {
+	public void setUp() throws IOException, ScriptException {
 		try {
 			Model model = Model.getModel(ModelHelper.getModel("/correct/model.json"), "application/json");
-			mixinsJson = model.getOsTpls();
+			actions = ActionHelper.filterStorageLinkActions(model.getActions());
 		} catch (Exception e) {
 			throw new SkipException("Expected to fail before bugfix in json-schema gem");
 		}
 	}
 
 	@Test
-	public void getTermMixinTest() {
-		MixinHelper.testTerms(mixinsJson);
+	public void getTermActionTest() {
+		ActionHelper.testTerm(actions);
 	}
 
 	@Test
-	public void getSchemaMixinTest() {
-		MixinHelper.testSchemas(mixinsJson);
+	public void getSchemaActionTest() {
+		ActionHelper.testSchema(actions);
 	}
 
 	@Test
-	public void getTitleMixinTest() {
-		MixinHelper.testTitles(mixinsJson);
-	}
-
-	@Test
-	public void getRelationsMixinTest() {
-		MixinHelper.testRelations(mixinsJson);
-	}
-
-	@Test
-	public void getActionsTest() {
-		MixinHelper.testActions(mixinsJson);
+	public void getTitleActionTest() {
+		ActionHelper.testTitle(actions);
 	}
 }

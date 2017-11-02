@@ -5,6 +5,8 @@ java_package 'cz.cesnet.cloud.occi.interfaces.core'
 java_import "cz.cesnet.cloud.occi.interfaces.core.Model"
 java_import "cz.cesnet.cloud.occi.interfaces.core.Mixin"
 java_import "cz.cesnet.cloud.occi.interfaces.core.MixinImpl"
+java_import "cz.cesnet.cloud.occi.interfaces.core.Action"
+java_import "cz.cesnet.cloud.occi.interfaces.core.ActionImpl"
 java_import "cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException"
 java_import "java.util.List"
 
@@ -58,6 +60,16 @@ class ModelImpl
 		list = java.util.LinkedList.new
 		@model.find_resource_tpls.each do |mixin|
 			impl = MixinImpl.new(mixin)
+			list.add(impl)
+		end
+		return list
+	end
+
+	java_signature 'List<Action> getActions()'
+	def actions()
+		list = java.util.LinkedList.new
+		@model.actions.each do |action|
+			impl = ActionImpl.new(action)
 			list.add(impl)
 		end
 		return list

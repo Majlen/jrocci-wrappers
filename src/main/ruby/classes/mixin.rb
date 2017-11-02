@@ -3,6 +3,8 @@ require 'occi/core'
 java_require 'classes/mixin'
 java_package 'cz.cesnet.cloud.occi.interfaces.core'
 java_import "cz.cesnet.cloud.occi.interfaces.core.Mixin"
+java_import "cz.cesnet.cloud.occi.interfaces.core.Action"
+java_import "cz.cesnet.cloud.occi.interfaces.core.ActionImpl"
 java_import "java.util.List"
 
 class MixinImpl
@@ -18,6 +20,16 @@ class MixinImpl
 		list = java.util.LinkedList.new
 		@mixin.depends.each do |mixin|
 			impl = MixinImpl.new(mixin)
+			list.add(impl)
+		end
+		return list
+	end
+
+	java_signature 'List<Action> getActions()'
+	def actions()
+		list = java.util.LinkedList.new
+		@mixin.actions.each do |action|
+			impl = ActionImpl.new(action)
 			list.add(impl)
 		end
 		return list

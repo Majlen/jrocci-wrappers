@@ -41,4 +41,9 @@ public class MixinTest {
 	public void getRelationsMixinTest() {
 		MixinHelper.testRelations(mixinsText);
 	}
+
+	@Test
+	public void getActionsTest() {
+		MixinHelper.testActions(mixinsText);
+	}
 }

@@ -36,4 +36,8 @@ public class ModelTest {
 		ModelHelper.testMixins(model);
 	}
 
+	@Test(dependsOnMethods = {"parseCorrectModelTest"})
+	public void getActionsModelTest() {
+		ModelHelper.testActions(model);
+	}
 }
