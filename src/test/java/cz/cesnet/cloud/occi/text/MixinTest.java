@@ -4,6 +4,7 @@ import cz.cesnet.cloud.occi.MixinHelper;
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Mixin;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,7 +18,7 @@ public class MixinTest {
 	private List<Mixin> mixinsText;
 
 	@BeforeClass(dependsOnGroups = "modelText")
-	public void setUp() throws IOException, ScriptException {
+	public void setUp() throws IOException, ScriptException, ParsingException {
 		Model model = Model.getModel(ModelHelper.getModel("/correct/model.txt"), "text/plain");
 		mixinsText = model.getOsTpls();
 	}

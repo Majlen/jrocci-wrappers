@@ -1,5 +1,7 @@
 package cz.cesnet.cloud.occi.interfaces.core;
 
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
+
 import javax.script.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +14,7 @@ public interface Model {
 	List<Mixin> getOsTpls();
 	List<Action> getActions();
 
-	static Model getModel(String model, String media_type) throws IOException, ScriptException {
+	static Model getModel(String model, String media_type) throws IOException, ScriptException, ParsingException {
 		return new ModelImpl(model, media_type);
 	}
 }

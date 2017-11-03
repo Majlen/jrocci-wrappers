@@ -4,6 +4,7 @@ import cz.cesnet.cloud.occi.ActionHelper;
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Action;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ public class ActionTest {
 	List<Action> actions;
 
 	@BeforeClass(dependsOnGroups = "modelText")
-	public void setUp() throws IOException, ScriptException {
+	public void setUp() throws IOException, ScriptException, ParsingException {
 		Model model = Model.getModel(ModelHelper.getModel("/correct/model.txt"), "text/plain");
 		actions = ActionHelper.filterStorageLinkActions(model.getActions());
 	}

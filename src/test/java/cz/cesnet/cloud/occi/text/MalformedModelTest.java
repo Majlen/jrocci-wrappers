@@ -19,7 +19,7 @@ public class MalformedModelTest {
 	}
 
 	@Test(groups = "modelText", expectedExceptions = ParsingException.class)
-	public void parseMalformedModelTest() throws ScriptException, IOException {
+	public void parseMalformedModelTest() throws ScriptException, IOException, ParsingException {
 		model = Model.getModel(textModel, "text/plain");
 	}
 }

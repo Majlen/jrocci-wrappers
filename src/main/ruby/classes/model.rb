@@ -14,6 +14,7 @@ class ModelImpl
 	include Model
 	java_implements Model
 
+	java_signature "ModelImpl(Object model, String media_type) throws ParsingException"
 	def initialize(model, media_type)
 		if model.is_a? String
 			@model = Occi::Infrastructure::Model.new

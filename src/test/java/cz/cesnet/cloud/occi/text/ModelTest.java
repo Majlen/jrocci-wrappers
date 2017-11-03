@@ -2,6 +2,7 @@ package cz.cesnet.cloud.occi.text;
 
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.annotations.*;
 
 import javax.script.ScriptException;
@@ -17,7 +18,7 @@ public class ModelTest {
 	}
 
 	@Test(groups = "modelText")
-	public void parseCorrectModelTest() throws ScriptException, IOException {
+	public void parseCorrectModelTest() throws ScriptException, IOException, ParsingException {
 		model = Model.getModel(textModel, "text/plain");
 	}
 
