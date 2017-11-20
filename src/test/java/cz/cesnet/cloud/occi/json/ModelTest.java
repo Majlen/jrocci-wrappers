@@ -2,10 +2,12 @@ package cz.cesnet.cloud.occi.json;
 
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import javax.script.ScriptException;
 import java.io.IOException;
 
 public class ModelTest {
@@ -18,12 +20,8 @@ public class ModelTest {
 	}
 
 	@Test(groups = "modelJSON")
-	public void parseCorrectModelTest() {
-		try {
-			model = Model.getModel(textModel, "application/json");
-		} catch (Exception e) {
-			throw new SkipException("Expected to fail before bugfix in json-schema gem");
-		}
+	public void parseCorrectModelTest() throws ScriptException, IOException, ParsingException {
+		model = Model.getModel(textModel, "application/json");
 	}
 
 	@Test(dependsOnMethods = {"parseCorrectModelTest"})

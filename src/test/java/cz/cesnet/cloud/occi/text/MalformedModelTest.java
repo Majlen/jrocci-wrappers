@@ -10,8 +10,8 @@ import javax.script.ScriptException;
 import java.io.IOException;
 
 public class MalformedModelTest {
-	String textModel;
-	Model model;
+	private String textModel;
+	private Model model;
 
 	@BeforeClass
 	public void setUp() throws IOException {

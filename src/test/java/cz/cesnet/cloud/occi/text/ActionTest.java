@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ActionTest {
-	List<Action> actions;
+	private List<Action> actions;
 
 	@BeforeClass(dependsOnGroups = "modelText")
 	public void setUp() throws IOException, ScriptException, ParsingException {

@@ -4,6 +4,7 @@ import cz.cesnet.cloud.occi.MixinHelper;
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Mixin;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,14 +18,10 @@ public class MixinTest {
 	private List<Mixin> mixinsJson;
 
 	@BeforeClass(dependsOnGroups = "modelJSON")
-	public void setUp() {
-		try {
-			Model model = Model.getModel(ModelHelper.getModel("/correct/model.json"), "application/json");
-			mixinsJson = model.getOsTpls();
-		} catch (Exception e) {
-			throw new SkipException("Expected to fail before bugfix in json-schema gem");
-		}
-	}
+	public void setUp() throws ScriptException, IOException, ParsingException{
+		Model model = Model.getModel(ModelHelper.getModel("/correct/model.json"), "application/json");
+		mixinsJson = model.getOsTpls();
+}
 
 	@Test
 	public void getTermMixinTest() {

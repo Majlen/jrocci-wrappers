@@ -4,6 +4,7 @@ import cz.cesnet.cloud.occi.ActionHelper;
 import cz.cesnet.cloud.occi.ModelHelper;
 import cz.cesnet.cloud.occi.interfaces.core.Action;
 import cz.cesnet.cloud.occi.interfaces.core.Model;
+import cz.cesnet.cloud.occi.interfaces.exceptions.ParsingException;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,16 +14,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class ActionTest {
-	List<Action> actions;
+	private List<Action> actions;
 
 	@BeforeClass(dependsOnGroups = "modelJSON")
-	public void setUp() throws IOException, ScriptException {
-		try {
-			Model model = Model.getModel(ModelHelper.getModel("/correct/model.json"), "application/json");
-			actions = ActionHelper.filterStorageLinkActions(model.getActions());
-		} catch (Exception e) {
-			throw new SkipException("Expected to fail before bugfix in json-schema gem");
-		}
+	public void setUp() throws IOException, ScriptException, ParsingException {
+		Model model = Model.getModel(ModelHelper.getModel("/correct/model.json"), "application/json");
+		actions = ActionHelper.filterStorageLinkActions(model.getActions());
 	}
 
 	@Test
