@@ -1,5 +1,7 @@
 require 'java'
 require 'occi/infrastructure'
+require 'monkeys/reader'
+require 'monkeys/uri'
 java_require 'classes/model'
 java_package 'cz.cesnet.cloud.occi.interfaces.core'
 java_import "cz.cesnet.cloud.occi.interfaces.core.Model"
