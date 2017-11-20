@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<rocci-core.version>5.0.3</rocci-core.version>
+		<rocci-core.version>5.0.4</rocci-core.version>
 		<rocci-api.version>5.0.0</rocci-api.version>
 	</properties>
 
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.jruby</groupId>
 			<artifactId>jruby</artifactId>
-			<version>9.1.13.0</version>
+			<version>9.1.14.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
